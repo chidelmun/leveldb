@@ -112,6 +112,11 @@ void WriteBatch::Delete(const Slice& key) {
   PutLengthPrefixedSlice(&rep_, key);
 }
 
+void WriteBatch::Flush() {
+  /* To be implemented*/
+  rep_ = "";
+}
+
 namespace {
 class MemTableInserter : public WriteBatch::Handler {
  public:

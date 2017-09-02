@@ -1191,6 +1191,10 @@ Status DBImpl::Delete(const WriteOptions& options, const Slice& key) {
   return DB::Delete(options, key);
 }
 
+Status DBImpl::Flush(const WriteOptions& options) {
+  return DB::Flush(options);
+}
+
 Status DBImpl::Write(const WriteOptions& options, WriteBatch* my_batch) {
   Writer w(&mutex_);
   w.batch = my_batch;
@@ -1482,6 +1486,12 @@ Status DB::Put(const WriteOptions& opt, const Slice& key, const Slice& value) {
 Status DB::Delete(const WriteOptions& opt, const Slice& key) {
   WriteBatch batch;
   batch.Delete(key);
+  return Write(opt, &batch);
+}
+
+Status DB::Flush(const WriteOptions& opt) {
+  WriteBatch batch;
+  batch.Flush();
   return Write(opt, &batch);
 }
 

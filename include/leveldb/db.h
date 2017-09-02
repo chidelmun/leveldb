@@ -68,6 +68,12 @@ class DB {
   // Note: consider setting options.sync = true.
   virtual Status Delete(const WriteOptions& options, const Slice& key) = 0;
 
+  // Remove all database entries (if any).  Returns OK on
+  // success, and a non-OK status on error.  It is not an error if "key"
+  // did not exist in the database.
+  // Note: consider setting options.sync = true.
+  virtual Status Flush(const WriteOptions& options) = 0;
+
   // Apply the specified updates to the database.
   // Returns OK on success, non-OK on failure.
   // Note: consider setting options.sync = true.

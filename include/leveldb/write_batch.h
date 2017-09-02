@@ -39,6 +39,9 @@ class WriteBatch {
   // If the database contains a mapping for "key", erase it.  Else do nothing.
   void Delete(const Slice& key);
 
+  // If the database contains any mapping pairs, erase all.  Else do nothing.
+  void Flush();
+
   // Clear all updates buffered in this batch.
   void Clear();
 

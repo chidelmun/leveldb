@@ -31,6 +31,7 @@ class DBImpl : public DB {
   // Implementations of the DB interface
   virtual Status Put(const WriteOptions&, const Slice& key, const Slice& value);
   virtual Status Delete(const WriteOptions&, const Slice& key);
+  virtual Status Flush(const WriteOptions&);
   virtual Status Write(const WriteOptions& options, WriteBatch* updates);
   virtual Status Get(const ReadOptions& options,
                      const Slice& key,
